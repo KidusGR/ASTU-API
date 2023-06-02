@@ -1,0 +1,18 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:include ./appdata/kvs/Login.kv
+#:include ./appdata/kvs/Home.kv
+#:include ./appdata/kvs/Profile.kv
+#:include ./appdata/kvs/Navbar.kv
+
+WindowManager:
+    transition: FadeTransition()
+    LoginScreen:
+    HomeScreen:
+    ProfileScreen:
+    EnrollmentScreen:
+    HistoryScreen:
+
+<Login>:
+<Home>:
+<Profile>:

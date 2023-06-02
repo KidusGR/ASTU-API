@@ -1,0 +1,266 @@
+{
+  "main_header": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+  },
+  "login_payload": {
+    "user_name": "",
+    "password": ""
+  },
+  "fetch_payloads": [
+    {
+      "operationName": "getPerson",
+      "query": "query getPerson($id: ID!) {\n  getPerson(id: $id) {\n    id\n    firstName\n    fatherName\n    grandFatherName\n    amharicFirstName\n    amharicFatherName\n    amharicGrandFatherName\n    gender\n    maritalStatus\n    nationality\n    region {\n      id\n      name\n      __typename\n    }\n    disability\n    dateOfBirth\n    fullNameInAmharic\n    amharicFullName\n    placeOfBirth\n    photoUrl\n    user {\n      userName\n      __typename\n    }\n    applicant {\n      student {\n        classYear\n        program {\n          name\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+        "id": "121"
+      }
+    },
+    {
+      "operationName": "user",
+      "variables": {},
+      "query": "query user {\n  user {\n    id\n    userName\n    email\n    __typename\n  }\n}\n"
+    },
+    {
+      "operationName": null,
+      "query": "{\n  person {\n    id\n    fullName\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  permittedStatus\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  studentActiveSemester {\n    id\n    semesterName\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  blankCbe\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  latestEvents {\n    id\n    event {\n      title\n      __typename\n    }\n    startDate\n    endDate\n    academicYearSemester {\n      semesterName\n      __typename\n    }\n    admissions {\n      id\n      name\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  headerProfile {\n    id\n    idNumber\n    classYear\n    dormitoryView\n    section\n    program {\n      id\n      name\n      __typename\n    }\n    applicant {\n      id\n      person {\n        id\n        photoUrl\n        fullName\n        __typename\n      }\n      admissionYear\n      admission {\n        id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  person {\n    id\n    fullName\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": "getPerson",
+      "query": "query getPerson($id: ID!) {\n  getPerson(id: $id) {\n    id\n    firstName\n    fatherName\n    grandFatherName\n    amharicFirstName\n    amharicFatherName\n    amharicGrandFatherName\n    gender\n    maritalStatus\n    nationality\n    region {\n      id\n      name\n      __typename\n    }\n    disability\n    dateOfBirth\n    fullNameInAmharic\n    amharicFullName\n    placeOfBirth\n    photoUrl\n    user {\n      userName\n      __typename\n    }\n    applicant {\n      student {\n        classYear\n        program {\n          name\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+        "id": "23346"
+      }
+    },
+    {
+      "operationName": "getApplicant",
+      "query": "query getApplicant($personId: ID!) {\n  getApplicant(personId: $personId) {\n    id\n    student {\n      id\n      idNumber\n      __typename\n    }\n    structure {\n      id\n      name\n      __typename\n    }\n    admission {\n      id\n      fullName\n      __typename\n    }\n    classYear {\n      id\n      name\n      __typename\n    }\n    program {\n      id\n      fullName\n      __typename\n    }\n    academicYear {\n      id\n      year\n      __typename\n    }\n    registrationNumber\n    matriculationResult\n    tuitionType\n    __typename\n  }\n}\n",
+      "variables": {
+        "personId": "23346"
+      }
+    },
+    {
+      "operationName": "getEmergencyContact",
+      "query": "query getEmergencyContact($personId: ID!) {\n  getEmergencyContact(personId: $personId) {\n    id\n    fullName\n    relationship\n    homeTelephone\n    mobile\n    workTelephone\n    __typename\n  }\n}\n",
+      "variables": {
+        "personId": "23346"
+      }
+    },
+    {
+      "operationName": "getContactAddress",
+      "query": "query getContactAddress($personId: ID!) {\n  getContactAddress(personId: $personId) {\n    id\n    country\n    streetAddress\n    homeTelephone\n    mobile\n    workTelephone\n    email\n    zone {\n      id\n      name\n      __typename\n    }\n    woreda\n    kebele\n    __typename\n  }\n}\n",
+      "variables": {
+        "personId": "23346"
+      }
+    },
+    {
+      "operationName": "getFamilyBackgrounds",
+      "query": "query getFamilyBackgrounds($personId: ID!) {\n  getFamilyBackgrounds(personId: $personId) {\n    id\n    fullName\n    relation\n    dateOfBirth\n    educationLevel\n    occupation\n    __typename\n  }\n}\n",
+      "variables": {
+        "personId": "23346"
+      }
+    },
+    {
+      "operationName": "getEducations",
+      "query": "query getEducations($personId: ID!) {\n  getEducations(personId: $personId) {\n    id\n    institution\n    studyField\n    qualification\n    from\n    to\n    grade\n    scale\n    educationType\n    awardType\n    __typename\n  }\n}\n",
+      "variables": {
+        "personId": "23346"
+      }
+    },
+    {
+      "operationName": "getExperiences",
+      "query": "query getExperiences($personId: ID!) {\n  getExperiences(personId: $personId) {\n    id\n    companyName\n    title\n    location\n    from\n    to\n    description\n    documentUrl\n    __typename\n  }\n}\n",
+      "variables": {
+        "personId": "23346"
+      }
+    },
+    {
+      "operationName": "getDepartmentPreferences",
+      "query": "query getDepartmentPreferences($personId: ID!) {\n  getDepartmentPreferences(personId: $personId) {\n    id\n    program {\n      id\n      fullName\n      __typename\n    }\n    preference\n    __typename\n  }\n}\n",
+      "variables": {
+        "personId": "23346"
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  studentAcademicYearSemesters {\n    id\n    semesterName\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  addDrops {\n    id\n    requestFor\n    confirmationStatus\n    course {\n      creditHour\n      ects\n      codeAndTitle\n      __typename\n    }\n    courseAssignment {\n      instructorName\n      __typename\n    }\n    section {\n      name\n      __typename\n    }\n    registration {\n      academicYearSemester {\n        semesterName\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  readmissions {\n    id\n    occupation\n    leavingDate\n    reasonForLeaving\n    appStatus\n    registration {\n      student {\n        applicant {\n          person {\n            fullName\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    semester {\n      name\n      __typename\n    }\n    academicYear {\n      year\n      __typename\n    }\n    academicYearSemester {\n      semesterName\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  transfers {\n    id\n    transferType\n    toInstitution\n    effectiveAcademicYearAndSemester\n    reason\n    hod1Comment\n    hodStatus1\n    hod2Comment\n    hodStatus2\n    program {\n      name\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  withdrawals {\n    id\n    reason\n    additionalInformation\n    hodRecommendation\n    status\n    requestedDate\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  studentTranscript {\n    id\n    curriculumType\n    classYear {\n      id\n      name\n      __typename\n    }\n    academicYearSemester {\n      id\n      semesterName\n      __typename\n    }\n    courseEnrollments {\n      id\n      course {\n        id\n        courseCode\n        courseTitle\n        ects\n        creditHour\n        __typename\n      }\n      studentGrade {\n        id\n        letterGrade\n        gradePoint\n        __typename\n      }\n      __typename\n    }\n    gpa {\n      id\n      semesterEcts\n      currentSemesterTotalCreditHour\n      currentSemesterTotalGradePoint\n      semesterGpa\n      totalCreditHour\n      totalGradePoint\n      cumulativeGpa\n      status\n      __typename\n    }\n    __typename\n  }\n  pendingCourseExemptions {\n    id\n    instituteName\n    academicYear {\n      year\n      __typename\n    }\n    exemptionEquivalentAcademicSemesters {\n      id\n      academicYearSemester {\n        semesterName\n        __typename\n      }\n      __typename\n    }\n    courseExemptionDetails {\n      id\n      course {\n        courseCode\n        courseTitle\n        titleAndCode\n        __typename\n      }\n      equivalentCourseName\n      equivalentCourseCreditHour\n      equivalentCourseEcts\n      gradeOrMark\n      approval\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  gpaStatus {\n    id\n    status\n    semesterGpa\n    cumulativeGpa\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  studentCourseEnrollments {\n    id\n    course {\n      id\n      titleAndCode\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  studentAttendance {\n    id\n    courseAssignmentSection {\n      id\n      attendanceAll\n      courseAssignment {\n        id\n        instructorName\n        offeredCourse {\n          id\n          course {\n            id\n            courseTitle\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  costSharingByAys {\n    id\n    semesterName\n    costSharing {\n      id\n      serviceTotal\n      services {\n        service\n        amount\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "query": "{\n  complaintCalendar\n}\n",
+      "variables": {
+      }
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  studentCurriculumType\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  studentCurriculum {\n    id\n    curriculumType\n    offeredAt\n    curriculumCourses {\n      id\n      course {\n        id\n        courseCode\n        courseTitle\n        ects\n        creditHour\n        __typename\n      }\n      coursePreRequisites {\n        id\n        course {\n          id\n          courseTitle\n          courseCode\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  registrationStatus\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  registrationSlip {\n    id\n    cafeStatus\n    academicYearSemester {\n      id\n      semesterName\n      __typename\n    }\n    student {\n      id\n      idNumber\n      section\n      classYear\n      status\n      program {\n        id\n        fullName\n        __typename\n      }\n      applicant {\n        id\n        admissionYear\n        admission {\n          id\n          name\n          __typename\n        }\n        person {\n          id\n          fullName\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    courseEnrollments {\n      id\n      instructorName\n      course {\n        id\n        courseCode\n        courseTitle\n        ects\n        creditHour\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  courseAudit {\n    id\n    courseTitle\n    courseCode\n    ects\n    creditHour\n    courseDescription\n    __typename\n  }\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  payment {\n    status\n    lbl\n    employee {\n      id\n      person {\n        id\n        fullName\n        __typename\n      }\n      __typename\n    }\n    pType\n    aysCy\n    price\n    paymentStatus\n    __typename\n  }\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  myDorm {\n    id\n    bed {\n      name\n      room {\n        name\n        block {\n          name\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  addDropStatus\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  withdrawalStatus\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  reasonGroup\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  clearanceList {\n    id\n    reason\n    hodStatus\n    policeStatus\n    sscStatus\n    proctorStatus\n    librarianStatus\n    academicYearSemester {\n      semesterName\n      __typename\n    }\n    student {\n      idNumber\n      applicant {\n        person {\n          fullName\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  studentGradeComplaints {\n    id\n    oldLetterGrade\n    newLetterGrade\n    approvalStatus\n    studentGrade {\n      id\n      courseEnrollment {\n        id\n        course {\n          id\n          courseTitle\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    courseAssignment {\n      id\n      employee {\n        id\n        person {\n          id\n          fullName\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+    },
+    {
+      "operationName": null,
+      "variables": {},
+      "query": "{\n  pendingCourseExemptions {\n    id\n    instituteName\n    documentUrl\n    academicYear {\n      year\n      __typename\n    }\n    exemptionEquivalentAcademicSemesters {\n      id\n      academicYearSemester {\n        semesterName\n        __typename\n      }\n      __typename\n    }\n    courseExemptionDetails {\n      id\n      course {\n        courseCode\n        courseTitle\n        titleAndCode\n        __typename\n      }\n      equivalentCourseName\n      equivalentCourseCreditHour\n      equivalentCourseEcts\n      gradeOrMark\n      approval\n      __typename\n    }\n    __typename\n  }\n}\n"
+    },
+    {
+      "operationName": "gradeReport",
+      "query": "query gradeReport($id: ID!) {\n  gradeReport(id: $id) {\n    id\n    isModular\n    prevGpa {\n      id\n      status\n      currentSemesterTotalCreditHour\n      currentSemesterTotalGradePoint\n      semesterGpa\n      cumulativeGpa\n      totalCreditHour\n      totalGradePoint\n      __typename\n    }\n    gpa {\n      id\n      status\n      currentSemesterTotalCreditHour\n      currentSemesterTotalGradePoint\n      semesterGpa\n      cumulativeGpa\n      totalCreditHour\n      totalGradePoint\n      __typename\n    }\n    academicYearSemester {\n      id\n      semesterName\n      __typename\n    }\n    courseEnrollments {\n      id\n      course {\n        id\n        courseCode\n        courseTitle\n        creditHour\n        ects\n        __typename\n      }\n      studentGrade {\n        id\n        letterGrade\n        gradePoint\n        repeatedLetterGrade\n        complainable\n        gradeComplaint {\n          id\n          __typename\n        }\n        modular {\n          id\n          moduleTitle\n          moduleCode\n          moduleEcts\n          moduleType\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+        "id": ""
+      }
+    },
+    {
+      "operationName": "assessmentResultForEnrollment",
+      "query": "query assessmentResultForEnrollment($id: ID!) {\n  assessmentResultForEnrollment(id: $id) {\n    id\n    instructorName\n    sumOfMaximumMark\n    sumOfResults\n    course {\n      id\n      courseTitle\n      courseCode\n      __typename\n    }\n    studentGrade {\n      id\n      letterGrade\n      __typename\n    }\n    assessmentResults {\n      id\n      result\n      assessment {\n        id\n        assessmentName\n        maximumMark\n        assessmentType\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+      "variables": {
+        "id": ""
+      }
+    }
+  ]
+}

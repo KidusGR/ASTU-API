@@ -1,0 +1,152 @@
+<LoginScreen>:
+    name: "Login"
+    id: login
+    FitImage:
+        source:"appdata/image/astu_green.png"
+        size_hint: 1, None
+        size: "30dp", root.width
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        opacity: 0.15
+
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: "vertical"
+                    size_hint: 1, 1
+                    md_bg_color: (30/255,30/255,30/255,1)
+
+                    MDTopAppBar:
+                        title: "[font=appdata/font/neuropol.otf]Login[/font]"
+                        md_bg_color: app.theme_cls.primary_light
+                        elevation: 0
+                        specific_text_color: (30/255,30/255,30/255,1)
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+
+                    MDFloatLayout:
+
+                        Image:
+                            source: "appdata/image/Logo.png"
+                            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+                            size_hint: None, None
+                            size: "100dp", "100dp"
+                        MDLabel:
+                            id: Login_Label
+                            text: "WELCOME TO ASTU-API"
+                            size_hint_x: 0.9
+                            #font_size: "15dp"
+                            halign: "center"
+                            size_hint_y: None
+                            # height: self.texture_size[1]
+                            padding_y: "55dp"
+                            pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
+                            font_name: 'appdata/font/neuropol.otf'
+
+                        MDTextField:
+                            id: id_field
+                            hint_text: "  ID"
+                            text_color_normal: app.theme_cls.primary_color
+                            font_name: 'appdata/font/Paul-le1V.ttf'
+                            icon_left: "id-card"
+                            icon_left_color_normal: app.theme_cls.primary_color
+                            #line_color_normal: app.theme_cls.primary_color
+                            # icon_right_color: app.theme_cls.primary_color
+                            pos_hint: {"center_x": 0.5, "center_y": 0.65}
+                            size_hint_x: 0.8
+                            # mode: "rectangle"
+
+                        MDTextField:
+                            id: pass_field
+                            password: True
+                            hint_text: "  Password"
+
+                            text_color_normal: app.theme_cls.primary_color
+                            font_name: 'appdata/font/Paul-le1V.ttf'
+                            #line_color_normal: app.theme_cls.primary_color
+                            icon_left: "key"
+                            icon_left_color_normal: app.theme_cls.primary_color
+                            pos_hint: {"center_x": 0.5, "center_y": 0.55}
+                            # icon_right_color: app.theme_cls.primary_color
+                            # helper_text: "Forgot password or ID? Contact the Registrar."
+                            # helper_text_mode: "persistent"
+                            size_hint_x: 0.8
+
+                        MDIconButton:
+                            icon: "eye-off"
+                            pos_hint: {"center_x": 0.85, "center_y": 0.55}
+                            icon_size: "20dp"
+                            #pos: pass_field.width + dp(30), 0
+                            #theme_text_color: "Hint"
+                            theme_icon_color: "Custom"
+                            icon_color: app.theme_cls.primary_color
+                            on_release:
+                                self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+                                pass_field.password = False if pass_field.password is True else True
+
+                        MDRectangleFlatIconButton:
+                            icon: "login"
+
+                            text: "L O G I N"
+                            text_color: (30/255,30/255,30/255,1)
+                            icon_color: (30/255,30/255,30/255,1)
+                            # font_size: 10
+                            font_name: 'appdata/font/neuropol.otf'
+                            line_width: "1.5dp"
+                            md_bg_color: app.theme_cls.primary_color
+                            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+                            on_release: app.login()
+
+                        MDLabel:
+                            text: "Developed By  |  Kidus_GR"
+                            font_size: "10dp"
+                            halign: "center"
+                            # size_hint_y: None
+                            # height: self.texture_size[1]
+                            # padding_y: "15dp"
+                            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
+                            font_name: 'appdata/font/neuropol.otf'
+                            size_hint_y: 1
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: 0
+
+            MDBoxLayout:
+                size_hint: 1, 1
+                orientation: "vertical"
+                spacing: "5dp"
+
+                FitImage:
+                    size_hint: None, None
+                    source: "appdata/image/NoUser.jpg"
+                    radius: 360
+                    pos_hint: {"center_x": 0.5}
+                Widget:
+                    size_hint_y: None
+                    height: "10dp"
+                MDLabel:
+                    md_bg_color: app.theme_cls.primary_color
+                    text: 'Name : "Student"'
+                    theme_text_color: "Custom"
+                    text_color: (30/255,30/255,30/255,1)
+                    font_style: "Subtitle1"
+                    font_name: 'appdata/font/neuropol.otf'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDLabel:
+                    md_bg_color: app.theme_cls.primary_color
+                    text: 'ID : "Student ID"'
+                    theme_text_color: "Custom"
+                    text_color: (30/255,30/255,30/255,1)
+                    font_style: "Caption"
+                    font_name: 'appdata/font/neuropol.otf'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                ScrollView:
+                    MDList:
+                        id: list
