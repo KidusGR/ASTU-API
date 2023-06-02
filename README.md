@@ -1,1 +1,1 @@
-ASTU e-student App
+A multi platform client app for ASTU e-student system.
