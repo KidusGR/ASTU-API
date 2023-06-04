@@ -51,7 +51,7 @@ sm.add_widget(LoginScreen(name="Login"))
 sm.add_widget(HistoryScreen(name='Home'))
 
 
-class ASTUApiApp(MDApp):
+class ASTU_APIApp(MDApp):
 
     def build(self):
         screen = Builder.load_file("appdata/kvs/main.kv")
@@ -162,4 +162,4 @@ class ASTUApiApp(MDApp):
             print(error_msg)
 
 
-ASTUApiApp().run()
+ASTU_APIApp().run()
