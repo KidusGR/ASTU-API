@@ -20,88 +20,88 @@
                         elevation: 0
                         specific_text_color: (30/255,30/255,30/255,1)
                         left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
-                    MDBoxLayout:
-                        md_bg_color: (1,1,1,0.2)
-                        size_hint: 1, None
-                        height: "300dp"
-                        pos_hint: {"center_x": 0.5, "center_y": 0.8}
-                        orientation: 'horizontal'
-                        FitImage:
-                            id: profile
-                            pos_hint: {"center_x": 0,"center_y": 0.5}
-                            size_hint: 0.7, 0.95
-                            radius: 0
+                    MDFloatLayout:
+#                    MDBoxLayout:
+#                        md_bg_color: (1,1,1,0.2)
+#                        size_hint: 1, None
+#                        height: "300dp"
+#                        pos_hint: {"center_x": 0.5, "center_y": 0.8}
+#                        orientation: 'horizontal'
+#                        FitImage:
+#                            id: profile
+#                            pos_hint: {"center_x": 0,"center_y": 0.5}
+#                            size_hint: 0.7, 0.95
+#                            radius: 0
 
-                    MDBoxLayout:
-                        id: float
-                        padding: "5dp"
-                        orientation: 'vertical'
-                        ScrollView:
-                            MDList:
-                                md_bg_color: (1,1,1,0.2)
-                                OneLineListItem:
-                                    id: fullname
-                                    #pos_hint: {"center_x": 0.5, "center_y": 1}
-                                    theme_text_color: "Custom"
-                                    text_color: app.theme_cls.primary_color
-                                    font_name: 'appdata/font/Paul-le1V.ttf'
-                                    font_size: "20dp"
+#                    MDBoxLayout:
+#                        id: float
+#                        padding: "5dp"
+#                        orientation: 'vertical'
+#                        ScrollView:
+#                            MDList:
+#                                md_bg_color: (1,1,1,0.2)
+#                                OneLineListItem:
+#                                    id: fullname
+#                                    #pos_hint: {"center_x": 0.5, "center_y": 1}
+#                                    theme_text_color: "Custom"
+#                                    text_color: app.theme_cls.primary_color
+#                                    font_name: 'appdata/font/Paul-le1V.ttf'
+#                                    font_size: "20dp"
 
-                                OneLineListItem:
-                                    id: idnum
-                                    #pos_hint: {"center_x": 0.5, "center_y": 0.9}
-                                    theme_text_color: "Custom"
-                                    text_color: app.theme_cls.primary_color
-                                    font_name: 'appdata/font/Paul-le1V.ttf'
-                                    font_size: "40dp"
+#                                OneLineListItem:
+#                                    id: idnum
+#                                    #pos_hint: {"center_x": 0.5, "center_y": 0.9}
+#                                    theme_text_color: "Custom"
+#                                    text_color: app.theme_cls.primary_color
+#                                    font_name: 'appdata/font/Paul-le1V.ttf'
+#                                    font_size: "40dp"
 
-                                OneLineListItem:
-                                    id: program
-                                    #pos_hint: {"center_x": 0.5, "center_y": 0.7}
-                                    theme_text_color: "Custom"
-                                    text_color: app.theme_cls.primary_color
-                                    font_name: 'appdata/font/Paul-le1V.ttf'
-                                    font_size: "20dp"
+#                                OneLineListItem:
+#                                    id: program
+#                                    #pos_hint: {"center_x": 0.5, "center_y": 0.7}
+#                                    theme_text_color: "Custom"
+#                                    text_color: app.theme_cls.primary_color
+#                                    font_name: 'appdata/font/Paul-le1V.ttf'
+#                                    font_size: "20dp"
 
-                                OneLineListItem:
-                                    id: classyear
-                                    #pos_hint: {"center_x": 0.5, "center_y": 0.6}
-                                    theme_text_color: "Custom"
-                                    text_color: app.theme_cls.primary_color
-                                    font_name: 'appdata/font/Paul-le1V.ttf'
-                                    font_size: "20dp"
+#                                OneLineListItem:
+#                                    id: classyear
+#                                   #pos_hint: {"center_x": 0.5, "center_y": 0.6}
+#                                  theme_text_color: "Custom"
+#                                 text_color: app.theme_cls.primary_color
+#                                    font_name: 'appdata/font/Paul-le1V.ttf'                                    font_size: "20dp"
+#
+#                                OneLineListItem:
+#                                    id: section
+#                                    #pos_hint: {"center_x": 0.5, "center_y": 0.5}
+#                                    theme_text_color: "Custom"
+#                                    text_color: app.theme_cls.primary_color
+#                                    font_name: 'appdata/font/Paul-le1V.ttf'
+#                                    font_size: "20dp"
 
-                                OneLineListItem:
-                                    id: section
-                                    #pos_hint: {"center_x": 0.5, "center_y": 0.5}
-                                    theme_text_color: "Custom"
-                                    text_color: app.theme_cls.primary_color
-                                    font_name: 'appdata/font/Paul-le1V.ttf'
-                                    font_size: "20dp"
+#                                OneLineListItem:
+#                                    id: dorm
+#                                    #pos_hint: {"center_x": 0.5, "center_y": 0.4}
+#                                    theme_text_color: "Custom"
+#                                    text_color: app.theme_cls.primary_color
+#                                    font_name: 'appdata/font/Paul-le1V.ttf'
+#                                    font_size: "20dp"
 
-                                OneLineListItem:
-                                    id: dorm
-                                    #pos_hint: {"center_x": 0.5, "center_y": 0.4}
-                                    theme_text_color: "Custom"
-                                    text_color: app.theme_cls.primary_color
-                                    font_name: 'appdata/font/Paul-le1V.ttf'
-                                    font_size: "20dp"
+#                                OneLineListItem:
+#                                    id: admission
+#                                    #pos_hint: {"center_x": 0.5, "center_y": 0.3}
+#                                    theme_text_color: "Custom"
+#                                    text_color: app.theme_cls.primary_color
+#                                    font_name: 'appdata/font/Paul-le1V.ttf'
+#                                    font_size: "20dp"
 
-                                OneLineListItem:
-                                    id: admission
-                                    #pos_hint: {"center_x": 0.5, "center_y": 0.3}
-                                    theme_text_color: "Custom"
-                                    text_color: app.theme_cls.primary_color
-                                    font_name: 'appdata/font/Paul-le1V.ttf'
-                                    font_size: "20dp"
-
-                                OneLineListItem:
-                                    id: admissiony
-                                    #pos_hint: {"center_x": 0.5, "center_y": 0.2}
-                                    theme_text_color: "Custom"
-                                    text_color: app.theme_cls.primary_color
-                                    font_name: 'appdata/font/Paul-le1V.ttf'
-                                    font_size: "20dp"
+#                                OneLineListItem:
+#                                    id: admissiony
+#                                    #pos_hint: {"center_x": 0.5, "center_y": 0.2}
+#                                    theme_text_color: "Custom"
+#                                    text_color: app.theme_cls.primary_color
+#                                    font_name: 'appdata/font/Paul-le1V.ttf'
+#                                    font_size: "20dp"
 #                        ScrollView:
 #                            pos_hint: {"center_x": 0.5, "center_y": 0.9}
 #                        MDLabel:
@@ -159,18 +159,18 @@
 #                            font_name: 'appdata/font/neuropol.otf'
 #
 #
-#                        MDLabel:
-#                            text: "Developed By  |  Kidus_GR"
-#                            font_size: "10dp"
-#                            halign: "center"
-#                            # size_hint_y: None
-#                            # height: self.texture_size[1]
-#                            # padding_y: "15dp"
-#                            pos_hint: {"center_x": 0.5, "center_y": 0.1}
-#                            theme_text_color: "Custom"
-#                            text_color: app.theme_cls.primary_color
-#                            font_name: 'appdata/font/neuropol.otf'
-#                            size_hint_y: 1
+                        MDLabel:
+                            text: "Developed By  |  Kidus_GR"
+                            font_size: "10dp"
+                            halign: "center"
+                            # size_hint_y: None
+                            # height: self.texture_size[1]
+                            # padding_y: "15dp"
+                            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
+                            font_name: 'appdata/font/neuropol.otf'
+                            size_hint_y: 1
 
         MDNavigationDrawer:
             id: nav_drawer
