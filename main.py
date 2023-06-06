@@ -38,6 +38,14 @@ class HistoryScreen(Screen):
     pass
 
 
+class EventsScreen(Screen):
+    pass
+
+
+class AssessmentsScreen(Screen):
+    pass
+
+
 class WindowManager(ScreenManager):
     pass
 
@@ -49,6 +57,9 @@ class NavWidget(MDNavigationDrawer):
 sm = ScreenManager()
 sm.add_widget(LoginScreen(name="Login"))
 sm.add_widget(HistoryScreen(name='Home'))
+sm.add_widget(EventsScreen(name='Events'))
+sm.add_widget(ProfileScreen(name="Profile"))
+sm.add_widget(AssessmentsScreen(name='Assessments'))
 
 
 class ASTU_APIApp(MDApp):
@@ -64,8 +75,8 @@ class ASTU_APIApp(MDApp):
         return screen
 
     def create_list(self, *args):
-        lists = ['Home home', 'Profile identifier']
-        pages = ['Login', 'Home', 'Profile']
+        lists = ['Login login', 'Home home', 'Profile identifier', 'Events calendar', 'Assessments check']
+        pages = ['Login', 'Home', 'Profile', 'Events', 'Assessments']
         for p in pages:
             for l in lists:
                 text = l.split(" ")
