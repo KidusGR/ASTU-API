@@ -3,6 +3,7 @@ from requests_html import HTMLSession
 import json
 import os
 import shutil
+import sqlite3
 
 baseurl = "http://10.240.1.89/api/auth/sign_in"  # Post
 graphs = "http://10.240.1.89/api//graphql"  # Post
