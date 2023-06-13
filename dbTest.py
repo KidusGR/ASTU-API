@@ -11,6 +11,7 @@ studentFile = "./data/ugr_23346_13/info"
 
 try:
     cursor.execute('''CREATE TABLE Student(
+    StudentID INTEGER PRIMARY KEY,
     firstName TEXT,
     fatherName TEXT,
     grandFatherName TEXT,
@@ -41,6 +42,17 @@ try:
     admissionYear TEXT,
     cafeStatus TEXT,
     academicYearSemester TEXT
+    )''')
+
+    cursor.execute('''CREATE TABLE GradeReport(
+    ReportID INTEGER PRIMARY KEY,
+    StudentID INTEGER,
+    status TEXT,
+    totalCreditHour REAL,
+    totalGradePoint REAL,
+    semesterGpa REAL,
+    cumulativeGpa REAL,
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
     )''')
 except:
     pass
