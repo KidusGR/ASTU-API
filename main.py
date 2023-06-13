@@ -166,7 +166,7 @@ class ASTU_APIApp(MDApp):
         self.BLoginStatus = BooleanProperty(stat)
         if stat:
             self.root.current = 'Home'
-            self.homepage(login['folder_name'], fetch)
+            #self.homepage(login['folder_name'], fetch)
 
         else:
             error_msg = "Wrong credentials!"
