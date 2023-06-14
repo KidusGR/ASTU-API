@@ -7,7 +7,7 @@ import json
 conn = sqlite3.connect("test.db")
 cursor = conn.cursor()
 
-studentFile = "./data/ugr_23346_13/info"
+studentFile = "./data/ugr_23956_13/info"
 
 leftoutStud = ["region", "program", "admission", "zone", "academicYearSemester"]
 
@@ -241,19 +241,39 @@ for file in os.listdir(studentFile):
 resultDict = merge_dicts_and_lists(dicts)
 studDict = {}
 iterate_nested_dict_and_lists(resultDict, validColsStud, studDict)
-print(studDict)
 
+region = f"{json.loads(open(f'{studentFile}/getPerson.json', 'r').read())['data']['getPerson']['region']['name']}"
+program = f"{json.loads(open(f'{studentFile}/headerProfile.json', 'r').read())['data']['headerProfile']['program']['name']}"
+admission = f"{json.loads(open(f'{studentFile}/headerProfile.json', 'r').read())['data']['headerProfile']['applicant']['admission']['name']}"
+zone = f"{json.loads(open(f'{studentFile}/getContactAddress.json', 'r').read())['data']['getContactAddress']['zone']['name']}"
+academicYearSemester = f"{json.loads(open(f'{studentFile}/studentActiveSemester.json', 'r').read())['data']['studentActiveSemester']['semesterName']}"
+StudentID = f"{json.loads(open(f'{studentFile}/user.json', 'r').read())['data']['user']['id']}"
 
+studDict.update({
+    "region": region,
+    "program": program,
+    "admission": admission,
+    "zone": zone,
+    "academicYearSemester": academicYearSemester,
+    "StudentID": StudentID
+})
+
+query = "INSERT INTO Student ({}) VALUES ({})".format(
+    ', '.join(studDict.keys()), ', '.join(['?' for _ in studDict]))
+cursor.execute(query, tuple(studDict.values()))
+
+# for col in list(studDict.keys()):
+#     print(f"{col} : {studDict[col]}")
 
 conn.commit()
 
 
-'''res = cursor.execute("SELECT name FROM sqlite_master").fetchall()
+res = cursor.execute("SELECT name FROM sqlite_master").fetchall()
 print(res)
 for r in res:
     print(r[0])
     cols = cursor.execute(f"SELECT * FROM {r[0]}")
-    print(cols.fetchall())'''
+    print(cols.fetchall())
 
 
 # for file in os.listdir(studentFile):
