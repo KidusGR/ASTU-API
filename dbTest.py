@@ -81,25 +81,25 @@ validColsRes = [
     "result"
 ]
 
-def iterate_nested_dict_and_lists(nested_dict, keys_to_print=None):
+def iterate_nested_dict_and_lists(nested_dict, keys_to_print=None, result_dict=None):
     if keys_to_print is None:
         keys_to_print = []
+    if result_dict is None:
+        result_dict = {}
     for key, value in nested_dict.items():
         if isinstance(value, dict):
-            iterate_nested_dict_and_lists(value, keys_to_print)
+            iterate_nested_dict_and_lists(value, keys_to_print, result_dict)
         elif isinstance(value, list):
             for item in value:
                 if isinstance(item, dict):
-                    iterate_nested_dict_and_lists(item, keys_to_print)
+                    iterate_nested_dict_and_lists(item, keys_to_print, result_dict)
                 else:
                     if key in keys_to_print:
-                        # newList.append(key+":"+item)
-                        print(key, ":", item)
+                        result_dict[key] = item
         else:
             if key in keys_to_print:
-                # newDict[key] = item
-                # newList.append(key+":"+item)
-                print(key, ":", value)
+                result_dict[key] = value
+
 
 
 #DICTS AND LISTS MERGER FUNCTIONS #####################################################
@@ -239,8 +239,9 @@ for file in os.listdir(studentFile):
 
 
 resultDict = merge_dicts_and_lists(dicts)
-iterate_nested_dict_and_lists(resultDict, validColsStud)
-
+studDict = {}
+iterate_nested_dict_and_lists(resultDict, validColsStud, studDict)
+print(studDict)
 
 
 
