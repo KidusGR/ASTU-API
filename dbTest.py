@@ -391,8 +391,6 @@ for assess in json.loads(open(f"{studentFile}/assessmentResultForEnrollment.json
         
 
 
-
-
 conn.commit()
 
 
@@ -404,5 +402,4 @@ for r in res:
     print(cols.fetchall())
 
 
-# for file in os.listdir(studentFile):
-#     print(file)
+
