@@ -7,7 +7,7 @@ import json
 conn = sqlite3.connect("test.db")
 cursor = conn.cursor()
 
-studentFile = "./data/ugr_23346_13/info"
+studentFile = "./data/ugr_23832_13/info"
 
 leftoutStud = ["region", "program", "admission", "zone", "academicYearSemester"]
 
@@ -246,7 +246,10 @@ region = f"{json.loads(open(f'{studentFile}/getPerson.json', 'r').read())['data'
 program = f"{json.loads(open(f'{studentFile}/headerProfile.json', 'r').read())['data']['headerProfile']['program']['name']}"
 admission = f"{json.loads(open(f'{studentFile}/headerProfile.json', 'r').read())['data']['headerProfile']['applicant']['admission']['name']}"
 zone = f"{json.loads(open(f'{studentFile}/getContactAddress.json', 'r').read())['data']['getContactAddress']['zone']['name']}"
-academicYearSemester = f"{json.loads(open(f'{studentFile}/studentActiveSemester.json', 'r').read())['data']['studentActiveSemester']['semesterName']}"
+try:
+    academicYearSemester = f"{json.loads(open(f'{studentFile}/studentActiveSemester.json', 'r').read())['data']['studentActiveSemester']['semesterName']}"
+except:
+    academicYearSemester = None
 StudentID = f"{json.loads(open(f'{studentFile}/user.json', 'r').read())['data']['user']['id']}"
 
 studDict.update({
