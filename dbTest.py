@@ -313,6 +313,84 @@ for eve in eventList:
     ', '.join(eve.keys()), ', '.join(['?' for _ in eve]))
     cursor.execute(query, tuple(eve.values()))
 
+assessmentList = []
+for assess in json.loads(open(f"{studentFile}/assessmentResultForEnrollment.json", "r").read()):
+    CourseID = assess['data']['assessmentResultForEnrollment']['id']
+    instructorName = assess['data']['assessmentResultForEnrollment']['instructorName']
+    sumOfMaximumMark = assess['data']['assessmentResultForEnrollment']['sumOfMaximumMark']
+    sumOfResults = assess['data']['assessmentResultForEnrollment']['sumOfResults']
+    courseTitle = assess['data']['assessmentResultForEnrollment']['course']['courseTitle']
+    courseCode = assess['data']['assessmentResultForEnrollment']['course']['courseCode']
+    try:
+        studentGrade = assess['data']['assessmentResultForEnrollment']['studentGrade']['letterGrade']
+    except:
+        studentGrade = assess['data']['assessmentResultForEnrollment']['studentGrade']
+    for info in json.loads(open(f"{studentFile}/studentTranscript.json", "r").read())['data']['studentTranscript']:
+        for course in info['courseEnrollments']:
+            if course['id'] == CourseID:
+                creditHour = course['course']['creditHour']
+                ects = course['course']['ects']
+                semesterName = info['academicYearSemester']['semesterName']
+                classYear = info['classYear']['name']
+    assessDict = {
+        'CourseID' : CourseID,
+        'instructorName' : instructorName,
+        'sumOfMaximumMark' : sumOfMaximumMark,
+        'sumOfResults' : sumOfResults,
+        'courseTitle' : courseTitle,
+        'courseCode' : courseCode,
+        'studentGrade' : studentGrade,
+        'creditHour' : creditHour,
+        'ects' : ects,
+        'semesterName' : semesterName,
+        'classYear' : classYear,
+        'StudentID': StudentID
+    }
+
+    query = "INSERT INTO Assessment ({}) VALUES ({})".format(
+    ', '.join(assessDict.keys()), ', '.join(['?' for _ in assessDict]))
+    cursor.execute(query, tuple(assessDict.values()))
+
+    try:
+        for result in assess['data']['assessmentResultForEnrollment']['assessmentResults']:
+            ResultID = result['id']
+            assessmentName = result['assessment']['assessmentName']
+            maximumMark = result['assessment']['maximumMark']
+            assessmentType = result['assessment']['assessmentType']
+            result = result['result']
+            resDict = {
+                'ResultID' : ResultID,
+                'assessmentName' : assessmentName,
+                'maximumMark' : maximumMark,
+                'assessmentType' : assessmentType,
+                'result' : result,
+                'StudentID' : StudentID,
+                'CourseID' : CourseID
+            }
+            query = "INSERT INTO Result ({}) VALUES ({})".format(
+            ', '.join(resDict.keys()), ', '.join(['?' for _ in resDict]))
+            cursor.execute(query, tuple(resDict.values()))
+    except:
+        ResultID = None
+        assessmentName = None
+        maximumMark = None
+        assessmentType = None
+        result = None
+        resDict = {
+            'ResultID' : ResultID,
+            'assessmentName' : assessmentName,
+            'maximumMark' : maximumMark,
+            'assessmentType' : assessmentType,
+            'result' : result,
+            'StudentID' : StudentID,
+            'CourseID' : CourseID
+        }
+        query = "INSERT INTO Result ({}) VALUES ({})".format(
+        ', '.join(resDict.keys()), ', '.join(['?' for _ in resDict]))
+        cursor.execute(query, tuple(resDict.values()))
+        
+
+
 
 
 conn.commit()
