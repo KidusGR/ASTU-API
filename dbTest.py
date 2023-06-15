@@ -7,7 +7,7 @@ import json
 conn = sqlite3.connect("test.db")
 cursor = conn.cursor()
 
-studentFile = "./data/ugr_22551_13/info"
+studentFile = "./data/ugr_23346_13/info"
 
 leftoutStud = ["region", "program", "admission", "zone", "academicYearSemester"]
 
@@ -264,6 +264,56 @@ cursor.execute(query, tuple(studDict.values()))
 
 # for col in list(studDict.keys()):
 #     print(f"{col} : {studDict[col]}")
+
+gradeList = []
+for report in json.loads(open(f"{studentFile}/gradeReport.json", "r").read())[1:]:
+    ReportID = report['data']['gradeReport']['id']
+    status = report['data']['gradeReport']['prevGpa']['status']
+    totalCreditHour = report['data']['gradeReport']['prevGpa']['totalCreditHour']
+    totalGradePoint = report['data']['gradeReport']['prevGpa']['totalGradePoint']
+    semesterGpa = report['data']['gradeReport']['prevGpa']['semesterGpa']
+    cumulativeGpa = report['data']['gradeReport']['prevGpa']['cumulativeGpa']
+    gradeDict = {
+        'status': status,
+        'totalCreditHour': totalCreditHour,
+        'totalGradePoint': totalGradePoint,
+        'semesterGpa': semesterGpa,
+        'cumulativeGpa': cumulativeGpa,
+        'ReportID': ReportID,
+        'StudentID': StudentID
+    }
+    gradeList.append(gradeDict)
+
+for rep in gradeList:
+    query = "INSERT INTO GradeReport ({}) VALUES ({})".format(
+    ', '.join(rep.keys()), ', '.join(['?' for _ in rep]))
+    cursor.execute(query, tuple(rep.values()))
+
+eventList = []
+for event in json.loads(open(f"{studentFile}/latestEvents.json", "r").read())['data']['latestEvents']:
+    EventID = event['id']
+    title = event['event']['title']
+    startDate = event['startDate']
+    endDate = event['endDate']
+    semesterName = event['academicYearSemester']['semesterName']
+    admissionName = event['admissions'][0]['name']
+    eventDict = {
+        'title': title,
+        'startDate': startDate,
+        'endDate': endDate,
+        'semesterName': semesterName,
+        'admissionName': admissionName,
+        'EventID': EventID,
+        'StudentID': StudentID
+    }
+    eventList.append(eventDict)
+
+for eve in eventList:
+    query = "INSERT INTO Event ({}) VALUES ({})".format(
+    ', '.join(eve.keys()), ', '.join(['?' for _ in eve]))
+    cursor.execute(query, tuple(eve.values()))
+
+
 
 conn.commit()
 
