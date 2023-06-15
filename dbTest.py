@@ -7,7 +7,7 @@ import json
 conn = sqlite3.connect("test.db")
 cursor = conn.cursor()
 
-studentFile = "./data/ugr_23346_13/info"
+studentFile = "./data/ugr_22551_13/info"
 
 leftoutStud = ["region", "program", "admission", "zone", "academicYearSemester"]
 
@@ -311,10 +311,14 @@ for event in json.loads(open(f"{studentFile}/latestEvents.json", "r").read())['d
     }
     eventList.append(eventDict)
 
-for eve in eventList:
-    query = "INSERT INTO Event ({}) VALUES ({})".format(
-    ', '.join(eve.keys()), ', '.join(['?' for _ in eve]))
-    cursor.execute(query, tuple(eve.values()))
+try:
+    for eve in eventList:
+        query = "INSERT INTO Event ({}) VALUES ({})".format(
+        ', '.join(eve.keys()), ', '.join(['?' for _ in eve]))
+        cursor.execute(query, tuple(eve.values()))
+except:
+    pass
+
 
 assessmentList = []
 for assess in json.loads(open(f"{studentFile}/assessmentResultForEnrollment.json", "r").read()):
