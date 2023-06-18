@@ -35,17 +35,18 @@
                             pos_hint: {"center_x": 0.5, "center_y": 0.55}
                             halign: "center"
                             theme_text_color: "Custom"
-                            text_color: app.theme_cls.primary_color
+                            text_color: "white"
                             font_name: 'appdata/font/neuropol.otf'
                             font_size: "15dp"
                         MDBoxLayout:
                             id: boxH
-                            md_bg_color: (1,1,1,0.2)
+                            md_bg_color: (0,1,0,0.2)
                             size_hint: 1, None
                             height: "300dp"
                             pos_hint: {"center_x": 0.5, "center_y": 0.25}
+                            
                             OneLineIconListItem:
-                                bg_color: (0,0,0,0.7)
+                                bg_color: (30/255,30/255,30/255,1)
                                 pos_hint: {"center_x": 0.5, "center_y": 0.95}
                                 size_hint: 1, 0.07
                                 MDIcon:
@@ -53,6 +54,8 @@
                                     pos_hint: {"center_x": 0.05, "center_y": 0.6}
                                     padding_x: "15dp"
                                     font_size: "15dp"
+                                    theme_text_color: "Custom"
+                                    text_color: self.theme_cls.primary_color
                                     halign: "center"
                                 MDLabel:
                                     text: "Student Information"

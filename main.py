@@ -145,7 +145,7 @@ class ASTU_APIApp(MDApp):
         layout = self.root.get_screen("Home").ids.floatH
         image = self.root.get_screen("Home").ids.profile
         label = self.root.get_screen("Home").ids.labelH
-        label.text = "Welcome Kidus Gizaw"
+        label.text = "Welcome Sintayehu Sisay"
         # data = self.header_data(filepath)
         # [size=24] ... [/size]
         # self.root.get_screen("Home").ids.fullname.text = f"[font=appdata/font/Paul-le1V.ttf]Full Name\
@@ -164,7 +164,7 @@ class ASTU_APIApp(MDApp):
         # : {data[7]}[/font]"
         # self.root.get_screen("Home").ids.admissiony.text = f"[font=appdata/font/Paul-le1V.ttf]Admission Year\
         # : {data[6]}[/font]"
-        image.source = f"./data/ugr_23346_13/info/Kidus_Gizaw_Mekuria.jpeg"# f"./data/{filepath}/info/{filename}.jpeg"
+        image.source = f"./data/ugr_22551_13/info/Sintayehu_Sisay_Lema.jpeg"# f"./data/{filepath}/info/{filename}.jpeg"
 
     def page(self, text):
         self.root.current = text
