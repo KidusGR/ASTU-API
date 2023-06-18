@@ -77,6 +77,7 @@ class ASTU_APIApp(MDApp):
     def create_list(self, *args):
         lists = ['Login login log', 'Home home hom', 'Profile identifier pro', 'Events calendar eve', 'Assessments check asses']
         pages = ['Login', 'Home', 'Profile', 'Events', 'Assessments']
+        
         if self.status():
             for p in pages:
                 for l in lists:

@@ -15,12 +15,14 @@
                     size_hint: 1, 1
                     md_bg_color: (30/255,30/255,30/255,1)
                     MDTopAppBar:
-                        title: "[font=appdata/font/neuropol.otf]Home[/font]"
+                        title: "[font=appdata/font/neuropol.otf][size=14]Home[/font][/size]"
                         md_bg_color: app.theme_cls.primary_light
                         elevation: 0
                         specific_text_color: (30/255,30/255,30/255,1)
                         left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        
                     MDFloatLayout:
+                        id: floatH
 #                    MDBoxLayout:
 #                        md_bg_color: (1,1,1,0.2)
 #                        size_hint: 1, None
@@ -177,37 +179,11 @@
             radius: 0
 
             MDBoxLayout:
+                id: boxL
                 size_hint: 1, 1
                 orientation: "vertical"
                 spacing: "5dp"
-
-                FitImage:
-                    size_hint: None, None
-                    source: "appdata/image/NoUser.jpg"
-                    radius: 360
-                    pos_hint: {"center_x": 0.5}
-                Widget:
-                    size_hint_y: None
-                    height: "10dp"
-                MDLabel:
-                    md_bg_color: app.theme_cls.primary_color
-                    text: 'Name : "Student"'
-                    theme_text_color: "Custom"
-                    text_color: (30/255,30/255,30/255,1)
-                    font_style: "Subtitle1"
-                    font_name: 'appdata/font/neuropol.otf'
-                    size_hint_y: None
-                    height: self.texture_size[1]
-
-                MDLabel:
-                    md_bg_color: app.theme_cls.primary_color
-                    text: 'ID : "Student ID"'
-                    theme_text_color: "Custom"
-                    text_color: (30/255,30/255,30/255,1)
-                    font_style: "Caption"
-                    font_name: 'appdata/font/neuropol.otf'
-                    size_hint_y: None
-                    height: self.texture_size[1]
+ 
                 ScrollView:
                     MDList:
                         id: list
