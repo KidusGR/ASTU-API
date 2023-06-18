@@ -7,7 +7,7 @@ import json
 conn = sqlite3.connect("test.db")
 cursor = conn.cursor()
 
-studentFile = "./data/ugr_23632_13/info"
+studentFile = "./data/ugr_22551_13/info"
 
 leftoutStud = ["region", "program", "admission", "zone", "academicYearSemester"]
 
@@ -50,7 +50,8 @@ validColsGrade = [
     "totalCreditHour",
     "totalGradePoint",
     "semesterGpa",
-    "cumulativeGpa"
+    "cumulativeGpa",
+    "semesterName"
 ]
 
 validColsEvent = [
@@ -180,10 +181,11 @@ try:
     ReportID INTEGER PRIMARY KEY,
     StudentID INTEGER,
     status TEXT NULL,
-    totalCreditHour REAL NULL,
-    totalGradePoint REAL NULL,
+    currentSemesterTotalCreditHour REAL NULL,
+    currentSemesterTotalGradePoint REAL NULL,
     semesterGpa REAL NULL,
     cumulativeGpa REAL NULL,
+    semesterName TEXT,
     FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
     )''')
 
@@ -269,21 +271,30 @@ cursor.execute(query, tuple(studDict.values()))
 #     print(f"{col} : {studDict[col]}")
 
 gradeList = []
-for report in json.loads(open(f"{studentFile}/gradeReport.json", "r").read())[1:]:
+for report in json.loads(open(f"{studentFile}/gradeReport.json", "r").read()):
     ReportID = report['data']['gradeReport']['id']
-    status = report['data']['gradeReport']['prevGpa']['status']
-    totalCreditHour = report['data']['gradeReport']['prevGpa']['totalCreditHour']
-    totalGradePoint = report['data']['gradeReport']['prevGpa']['totalGradePoint']
-    semesterGpa = report['data']['gradeReport']['prevGpa']['semesterGpa']
-    cumulativeGpa = report['data']['gradeReport']['prevGpa']['cumulativeGpa']
+    if report['data']['gradeReport']['gpa'] is None:
+        status = None
+        totalCreditHour = None
+        totalGradePoint = None
+        semesterGpa = None
+        cumulativeGpa = None
+    else:
+        status = report['data']['gradeReport']['gpa']['status']
+        currentSemesterTotalCreditHour = report['data']['gradeReport']['gpa']['currentSemesterTotalCreditHour']
+        currentSemesterTotalGradePoint = report['data']['gradeReport']['gpa']['currentSemesterTotalGradePoint']
+        semesterGpa = report['data']['gradeReport']['gpa']['semesterGpa']
+        cumulativeGpa = report['data']['gradeReport']['gpa']['cumulativeGpa']
+        semesterName = report['data']['gradeReport']['academicYearSemester']['semesterName']
     gradeDict = {
         'status': status,
-        'totalCreditHour': totalCreditHour,
-        'totalGradePoint': totalGradePoint,
+        'currentSemesterTotalCreditHour': currentSemesterTotalCreditHour,
+        'currentSemesterTotalGradePoint': currentSemesterTotalGradePoint,
         'semesterGpa': semesterGpa,
         'cumulativeGpa': cumulativeGpa,
         'ReportID': ReportID,
-        'StudentID': StudentID
+        'StudentID': StudentID,
+        'semesterName': semesterName
     }
     gradeList.append(gradeDict)
 
