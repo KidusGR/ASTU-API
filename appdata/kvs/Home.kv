@@ -24,7 +24,48 @@
                         
                     MDFloatLayout:
                         id: floatH
-
+                        FitImage:
+                            id: profile
+                            pos_hint: {"center_x": 0.5,"center_y": 0.78}
+                            size_hint: None, None
+                            size: "200dp", "200dp"
+                            radius: 0
+                        MDLabel:
+                            id: labelH
+                            pos_hint: {"center_x": 0.5, "center_y": 0.55}
+                            halign: "center"
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
+                            font_name: 'appdata/font/neuropol.otf'
+                            font_size: "15dp"
+                        MDBoxLayout:
+                            id: boxH
+                            md_bg_color: (1,1,1,0.2)
+                            size_hint: 1, None
+                            height: "300dp"
+                            pos_hint: {"center_x": 0.5, "center_y": 0.25}
+                            OneLineIconListItem:
+                                bg_color: (0,0,0,0.7)
+                                pos_hint: {"center_x": 0.5, "center_y": 0.95}
+                                size_hint: 1, 0.07
+                                MDIcon:
+                                    icon: "home"
+                                    pos_hint: {"center_x": 0.05, "center_y": 0.6}
+                                    padding_x: "15dp"
+                                    font_size: "15dp"
+                                    halign: "center"
+                                MDLabel:
+                                    text: "Student Information"
+                                    text_align: "center"
+                                    theme_text_color: "Custom"
+                                    text_color: self.theme_cls.primary_color
+                                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                                    font_name: 'appdata/font/neuropol.otf'
+                                    theme_text_color: "Custom"
+                                    text_color: app.theme_cls.primary_color
+                                    font_size: "10dp"
+                                    padding_x: "25dp"
+                                    
 
 
 

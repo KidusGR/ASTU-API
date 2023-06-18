@@ -142,27 +142,29 @@ class ASTU_APIApp(MDApp):
         return get_recursively(data, field)
 
     def homepage(self, filepath, filename):
-        layout = self.root.get_screen("Home").ids.float
+        layout = self.root.get_screen("Home").ids.floatH
         image = self.root.get_screen("Home").ids.profile
-        data = self.header_data(filepath)
+        label = self.root.get_screen("Home").ids.labelH
+        label.text = "Welcome Kidus Gizaw"
+        # data = self.header_data(filepath)
         # [size=24] ... [/size]
-        self.root.get_screen("Home").ids.fullname.text = f"[font=appdata/font/Paul-le1V.ttf]Full Name\
-        : {data[5]}[/font]"
-        self.root.get_screen("Home").ids.idnum.text = f"[font=appdata/font/Paul-le1V.ttf]ID\
-        : {data[0]}[/font]"
-        self.root.get_screen("Home").ids.program.text = f"[font=appdata/font/Paul-le1V.ttf]Program\
-        : {data[4]}[/font]"
-        self.root.get_screen("Home").ids.classyear.text = f"[font=appdata/font/Paul-le1V.ttf]Class Year\
-        : {data[1]}[/font]"
-        self.root.get_screen("Home").ids.section.text = f"[font=appdata/font/Paul-le1V.ttf]Section\
-        : {data[3]}[/font]"
-        self.root.get_screen("Home").ids.dorm.text = f"[font=appdata/font/Paul-le1V.ttf]Dormitory\
-        : {data[2]}[/font]"
-        self.root.get_screen("Home").ids.admission.text = f"[font=appdata/font/Paul-le1V.ttf]Admission\
-        : {data[7]}[/font]"
-        self.root.get_screen("Home").ids.admissiony.text = f"[font=appdata/font/Paul-le1V.ttf]Admission Year\
-        : {data[6]}[/font]"
-        image.source = f"./data/{filepath}/info/{filename}.jpeg"
+        # self.root.get_screen("Home").ids.fullname.text = f"[font=appdata/font/Paul-le1V.ttf]Full Name\
+        # : {data[5]}[/font]"
+        # self.root.get_screen("Home").ids.idnum.text = f"[font=appdata/font/Paul-le1V.ttf]ID\
+        # : {data[0]}[/font]"
+        # self.root.get_screen("Home").ids.program.text = f"[font=appdata/font/Paul-le1V.ttf]Program\
+        # : {data[4]}[/font]"
+        # self.root.get_screen("Home").ids.classyear.text = f"[font=appdata/font/Paul-le1V.ttf]Class Year\
+        # : {data[1]}[/font]"
+        # self.root.get_screen("Home").ids.section.text = f"[font=appdata/font/Paul-le1V.ttf]Section\
+        # : {data[3]}[/font]"
+        # self.root.get_screen("Home").ids.dorm.text = f"[font=appdata/font/Paul-le1V.ttf]Dormitory\
+        # : {data[2]}[/font]"
+        # self.root.get_screen("Home").ids.admission.text = f"[font=appdata/font/Paul-le1V.ttf]Admission\
+        # : {data[7]}[/font]"
+        # self.root.get_screen("Home").ids.admissiony.text = f"[font=appdata/font/Paul-le1V.ttf]Admission Year\
+        # : {data[6]}[/font]"
+        image.source = f"./data/ugr_23346_13/info/Kidus_Gizaw_Mekuria.jpeg"# f"./data/{filepath}/info/{filename}.jpeg"
 
     def page(self, text):
         self.root.current = text
@@ -184,6 +186,7 @@ class ASTU_APIApp(MDApp):
         if stat:
             self.root.current = 'Home'
             #self.homepage(login['folder_name'], fetch)
+            self.homepage("", "")
 
         else:
             error_msg = "Wrong credentials!"
