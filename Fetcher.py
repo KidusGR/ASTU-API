@@ -32,11 +32,20 @@ def FetchGrade(StudentID):
 
     cursor.execute(query, (StudentID,))
     results = cursor.fetchall()
-    gradeReport = {}
+    gradeReports = []
+    reportNum = 1
+    
     for row in results:
+        reports = {}
         for r in rows:
+            reports[r] = row[r]
             print(f"{r} : {row[r]}")
+        gradeReports.append(reports)
         print("\n")
+    return gradeReports
 
-FetchGrade(22387)
+for rep in FetchGrade(22387):
+    print(rep)
+
+
 

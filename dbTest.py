@@ -47,8 +47,8 @@ validColsStud = [
 
 validColsGrade = [
     "status",
-    "totalCreditHour",
-    "totalGradePoint",
+    "currentSemesterTotalCreditHour",
+    "currentSemesterTotalGradePoint",
     "semesterGpa",
     "cumulativeGpa",
     "semesterName"
