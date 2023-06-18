@@ -39,12 +39,11 @@ def FetchGrade(StudentID):
         reports = {}
         for r in rows:
             reports[r] = row[r]
-            print(f"{r} : {row[r]}")
         gradeReports.append(reports)
-        print("\n")
+
     return gradeReports
 
-for rep in FetchGrade(22387):
+for rep in FetchGrade(23182):
     print(rep)
 
 
