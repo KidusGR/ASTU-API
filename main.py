@@ -75,8 +75,14 @@ class ASTU_APIApp(MDApp):
         return screen
 
     def create_list(self, *args):
-        lists = ['Login login log', 'Home home hom', 'Profile identifier pro', 'Events calendar eve', 'Assessments check asses']
-        pages = ['Login', 'Home', 'Profile', 'Events', 'Assessments']
+        lists = [
+            'Home home hom',
+            'Profile identifier pro',
+            'Events calendar eve',
+            'Assessments check asses',
+            "Logout logout logu"
+        ]
+        pages = ['Home', 'Profile', 'Events', 'Assessments']
         
         if self.status():
             for p in pages:
@@ -98,8 +104,11 @@ class ASTU_APIApp(MDApp):
                         icon_size=15
                     )
                     )
-                    
-                    list1.bind(on_release=lambda i=text[0]: self.page(i.text.split(']')[2].split('[')[0]))
+                    if text[0] == "Logout":
+                        # self.inst.logout()
+                        list1.bind(on_release=lambda i="Login": self.page("Login"))
+                    else:
+                        list1.bind(on_release=lambda i=text[0]: self.page(i.text.split(']')[2].split('[')[0]))
                     if any(child.id == text[2] for child in button.children):
                         pass
                     else:
