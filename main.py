@@ -75,29 +75,34 @@ class ASTU_APIApp(MDApp):
         return screen
 
     def create_list(self, *args):
-        lists = ['Login login', 'Home home', 'Profile identifier', 'Events calendar', 'Assessments check']
+        lists = ['Login login log', 'Home home hom', 'Profile identifier pro', 'Events calendar eve', 'Assessments check asses']
         pages = ['Login', 'Home', 'Profile', 'Events', 'Assessments']
-        for p in pages:
-            for l in lists:
-                text = l.split(" ")
-                button = self.root.get_screen(p).ids.list
+        if self.status():
+            for p in pages:
+                for l in lists:
+                    text = l.split(" ")
+                    button = self.root.get_screen(p).ids.list
+                    textline = f"[size=12][font=appdata/font/neuropol.otf]{text[0]}[/font][/size]"
+                    list1 = OneLineIconListItem(
+                        id=text[2],
+                        text=textline,
+                        theme_text_color="Custom",
+                        text_color=self.theme_cls.primary_color,
+                    )
 
-                list1 = OneLineIconListItem(
-                    id='list1',
-                    text=f'[font=appdata/font/neuropol.otf]{text[0]}[/font]',
-                    theme_text_color="Custom",
-                    text_color=self.theme_cls.primary_color,
-                )
-
-                list1.add_widget(IconLeftWidget(
-                    icon=text[1],
-                    theme_icon_color="Custom",
-                    icon_color=self.theme_cls.primary_color,
-                )
-                )
-
-                list1.bind(on_release=lambda i=text[0]: self.page(i.text[i.text.find(']')+1:i.text[1:].find('[')+1]))
-                button.add_widget(list1)
+                    list1.add_widget(IconLeftWidget(
+                        icon=text[1],
+                        theme_icon_color="Custom",
+                        icon_color=self.theme_cls.primary_color,
+                        icon_size=15
+                    )
+                    )
+                    
+                    list1.bind(on_release=lambda i=text[0]: self.page(i.text.split(']')[2].split('[')[0]))
+                    if any(child.id == text[2] for child in button.children):
+                        pass
+                    else:
+                        button.add_widget(list1)
 
     def header_data(self, filepath):
 
@@ -163,6 +168,8 @@ class ASTU_APIApp(MDApp):
         login = self.inst.login(username, password)
         fetch = self.inst.fetch()
         stat = self.status()
+        if stat:
+            self.create_list()
         self.BLoginStatus = BooleanProperty(stat)
         if stat:
             self.root.current = 'Home'

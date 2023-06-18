@@ -34,28 +34,4 @@ MDNavigationDrawer:
             font_name: 'appdata/font/neuropol.otf'
             size_hint_y: None
             height: self.texture_size[1]
-        ScrollView:
-            MDList:
-                OneLineIconListItem:
-                    text: "Login"
-                    theme_text_color: "Custom"
-                    text_color: app.theme_cls.primary_color
-                    on_release:
-                        root.manager.current = 'Login'
-                        nav_drawer.set_state("close")
-                    IconLeftWidget:
-                        icon: "login"
-                        theme_icon_color: "Custom"
-                        icon_color: app.theme_cls.primary_color
-                        OneLineIconListItem:
-                            text: "Home"
-                            theme_text_color: "Custom"
-                            text_color: app.theme_cls.primary_color
-                            on_release:
-                                root.manager.current = 'Home'
-                                nav_drawer.set_state("close")
-
-                            IconLeftWidget:
-                                icon: "home"
-                                theme_icon_color: "Custom"
-                                icon_color: app.theme_cls.primary_color
+        
