@@ -8,7 +8,6 @@ conn = sqlite3.connect("test.db")
 cursor = conn.cursor()
 
 studentFile = "./data/ugr_23346_13/info"
-
 leftoutStud = ["region", "program", "admission", "zone", "academicYearSemester"]
 
 
