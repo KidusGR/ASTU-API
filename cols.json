@@ -1,0 +1,88 @@
+{"cols" : {
+    "Student":
+        {
+            "StudentID": "INTEGER PRIMARY KEY",
+            "firstName": "TEXT",
+            "fatherName": "TEXT",
+            "grandFatherName": "TEXT",
+            "amharicFirstName": "TEXT NULL",
+            "amharicFatherName": "TEXT NULL",
+            "amharicGrandFatherName": "TEXT NULL",
+            "gender": "TEXT",
+            "region": "TEXT",
+            "maritalStatus": "TEXT",
+            "nationality": "TEXT",
+            "disability": "TEXT NULL",
+            "dateOfBirth": "DATE",
+            "placeOfBirth": "TEXT",
+            "photoUrl": "TEXT",
+            "userName": "TEXT",
+            "classYear": "TEXT NULL",
+            "program": "TEXT NULL",
+            "email": "TEXT",
+            "dormitoryView": "TEXT NULL",
+            "section": "TEXT NULL",
+            "admission": "TEXT",
+            "country": "TEXT",
+            "homeTelephone": "INTEGER NULL",
+            "mobile": "INTEGER NULL",
+            "zone": "TEXT",
+            "woreda": "TEXT",
+            "kebele": "INTEGER",
+            "admissionYear": "TEXT",
+            "cafeStatus": "TEXT",
+            "academicYearSemester": "TEXT NULL"
+        },
+    "GradeReport":
+        {
+            "ReportID": "INTEGER PRIMARY KEY",
+            "StudentID": "INTEGER",
+            "status": "TEXT NULL",
+            "currentSemesterTotalCreditHour": "REAL NULL",
+            "currentSemesterTotalGradePoint": "REAL NULL",
+            "semesterGpa": "REAL NULL",
+            "cumulativeGpa": "REAL NULL",
+            "semesterName": "TEXT",
+            "F-KEY_0": "FOREIGN KEY (StudentID) REFERENCES Student(StudentID)"
+        },
+    "Event":
+        {
+            "EventID": "INTEGER PRIMARY KEY",
+            "StudentID": "INTEGER",
+            "title": "TEXT",
+            "startDate": "DATE",
+            "endDate": "DATE",
+            "semesterName": "TEXT",
+            "admissionName": "TEXT",
+            "F-KEY_0": "FOREIGN KEY (StudentID) REFERENCES Student(StudentID)"
+        },
+    "Assessment":
+        {
+            "CourseID": "INTEGER PRIMARY KEY",
+            "StudentID": "INTEGER",
+            "instructorName": "TEXT",
+            "sumOfMaximumMark": "REAL",
+            "sumOfResults": "REAL",
+            "courseTitle": "TEXT",
+            "studentGrade": "TEXT NULL",
+            "creditHour": "INTEGER",
+            "ects": "INTEGER NULL",
+            "semesterName": "TEXT",
+            "classYear": "TEXT",
+            "courseCode": "TEXT",
+            "F-KEY_0": "FOREIGN KEY (StudentID) REFERENCES Student(StudentID)"
+        },
+    "Result":
+        {
+            "ResultID": "INTEGER PRIMARY KEY",
+            "CourseID": "INTEGER NULL",
+            "StudentID": "INTEGER NULL",
+            "assessmentName": "TEXT NULL",
+            "maximumMark": "REAL NULL",
+            "assessmentType": "TEXT NULL",
+            "result": "REAL NULL",
+            "F-KEY_0": "FOREIGN KEY (CourseID) REFERENCES Assessment(CourseID)",
+            "F-KEY_1": "FOREIGN KEY (StudentID) REFERENCES Student(StudentID)"
+        }
+    }
+}
