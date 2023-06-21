@@ -7,21 +7,38 @@ import sqlite3
 conn = sqlite3.connect('test.db')
 conn.row_factory = sqlite3.Row
 cursor = conn.cursor()
+colData = json.loads(open("cols.json", "r").read())
 
-def FetchStudent(studentID):
-    pass
+def FetchStudent(StudentID):
+    rows = []
+    for row in colData['cols']['Student']:
+        rows.append(row)
+    
+    query = """
+    SELECT g.*
+    FROM Student g
+    JOIN Student s ON g.StudentID = s.StudentID
+    WHERE s.StudentID = ?
+    """
+    cursor.execute(query, (StudentID,))
+    results = cursor.fetchall()
+    StudentInfo = []
+
+    for row in results:
+        Student = {}
+        for r in rows:
+            Student[r] = row[r]
+        StudentInfo.append(Student)
+    
+    return StudentInfo
+
 
 
 def FetchGrade(StudentID):
-    rows = ['status',
-        'currentSemesterTotalCreditHour',
-        'currentSemesterTotalGradePoint',
-        'semesterGpa',
-        'cumulativeGpa',
-        'ReportID',
-        'StudentID',
-        'semesterName'
-    ]
+    rows = []
+    for row in colData['cols']['GradeReport']:
+        if not "F-KEY" in row:
+            rows.append(row)
 
     query = """
     SELECT g.*
@@ -45,6 +62,9 @@ def FetchGrade(StudentID):
 
 for rep in FetchGrade(23182):
     print(rep)
+
+for stud in FetchStudent(23182):
+    print(stud)
 
 
 
