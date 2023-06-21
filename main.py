@@ -144,10 +144,29 @@ class ASTU_APIApp(MDApp):
         return get_recursively(data, field)
 
     def homepage(self, filepath, filename):
-        layout = self.root.get_screen("Home").ids.floatH
+        layout = self.root.get_screen("Home").ids.boxH
         image = self.root.get_screen("Home").ids.profile
         label = self.root.get_screen("Home").ids.labelH
         label.text = f"Welcome {self.database['Student'][0]['firstName']} {self.database['Student'][0]['fatherName']}"
+        Stud = self.database['Student'][0]
+        homeList = {
+            "Name": f"{Stud['firstName']} {Stud['fatherName']} {Stud['grandFatherName']}",
+            "Program": f"{Stud['program']}",
+            "Class year": f"{Stud['classYear']}",
+            "Section": f"{Stud['section']}",
+            "Admission year": f"{Stud['admissionYear']}",
+            "Semester": f"{Stud['academicYearSemester']}"
+        }
+        for line in list(homeList.keys()):
+            l = OneLineIconListItem(
+                        id=line,
+                        text=f"[size=12][font=appdata/font/neuropol.otf]{line} : {homeList[line]}[/font][/size]",
+                        theme_text_color="Custom",
+                        text_color="white",
+                    )
+            layout.add_widget(l)
+            
+        
         # data = self.header_data(filepath)
         # [size=24] ... [/size]
         # self.root.get_screen("Home").ids.fullname.text = f"[font=appdata/font/Paul-le1V.ttf]Full Name\
@@ -166,9 +185,7 @@ class ASTU_APIApp(MDApp):
         # : {data[7]}[/font]"
         # self.root.get_screen("Home").ids.admissiony.text = f"[font=appdata/font/Paul-le1V.ttf]Admission Year\
         # : {data[6]}[/font]"
-        image.source = f"./data/{filepath}/info/{self.database['Student'][0]['firstName']}_\
-{self.database['Student'][0]['fatherName']}_\
-{self.database['Student'][0]['grandFatherName']}.jpeg"
+        image.source = f"./data/{filepath}/info/{Stud['firstName']}_{Stud['fatherName']}_{Stud['grandFatherName']}.jpeg"
 
     def page(self, text):
         self.root.current = text
