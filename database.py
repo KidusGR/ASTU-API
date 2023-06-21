@@ -410,5 +410,3 @@ class Database:
         self.conn.close()
         
 
-inst = Database()
-inst.main("ugr_23346_13")
