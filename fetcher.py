@@ -50,7 +50,6 @@ def FetchGrade(StudentID, cursor=cursor):
     cursor.execute(query, (StudentID,))
     results = cursor.fetchall()
     gradeReports = []
-    reportNum = 1
     
     for row in results:
         reports = {}
@@ -61,14 +60,84 @@ def FetchGrade(StudentID, cursor=cursor):
     return gradeReports
 
 
-# def FetchEvent(StudentID, cursor=cursor):
+def FetchEvent(StudentID, cursor=cursor):
+    rows = []
+    for row in colData['cols']['Event']:
+        if not "F-KEY" in row:
+            rows.append(row)
+
+    query = """
+    SELECT g.*
+    FROM Event g
+    JOIN Student s ON g.StudentID = s.StudentID
+    WHERE s.StudentID = ?
+    """
+
+    cursor.execute(query, (StudentID,))
+    results = cursor.fetchall()
+    Events = []
+    
+    for row in results:
+        Event = {}
+        for r in rows:
+            Event[r] = row[r]
+        Events.append(Event)
+
+    return Events
 
 
-for rep in FetchGrade(23182):
-    print(rep)
+def FetchAssessment(StudentID, cursor=cursor):
+    rows = []
+    for row in colData['cols']['Assessment']:
+        if not "F-KEY" in row:
+            rows.append(row)
 
-for stud in FetchStudent(23182):
-    print(stud)
+    query = """
+    SELECT g.*
+    FROM Assessment g
+    JOIN Student s ON g.StudentID = s.StudentID
+    WHERE s.StudentID = ?
+    """
+
+    cursor.execute(query, (StudentID,))
+    results = cursor.fetchall()
+    Assessments = []
+    
+    for row in results:
+        Assessment = {}
+        for r in rows:
+            Assessment[r] = row[r]
+        Assessments.append(Assessment)
+
+    return Assessments
+
+
+def FetchResult(StudentID, CourseID, cursor=cursor):
+    rows = []
+    for row in colData['cols']['Result']:
+        if not "F-KEY" in row:
+            rows.append(row)
+
+    query = """
+    SELECT r.*
+    FROM Result r
+    JOIN Student s ON r.StudentID = s.StudentID
+    JOIN Assessment a ON r.CourseID = a.CourseID
+    WHERE s.StudentID = ? AND a.CourseID = ?
+    """
+
+    cursor.execute(query, (StudentID, CourseID))
+    results = cursor.fetchall()
+    Results = []
+    
+    for row in results:
+        Result = {}
+        for r in rows:
+            Result[r] = row[r]
+        Results.append(Result)
+
+    return Results
+
 
 
 
