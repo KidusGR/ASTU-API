@@ -15,6 +15,11 @@ class Database:
         self.StudentID = ""
         self.studDict = {}
         self.studentFile = ""
+        self.StudentInfo = []
+        self.gradeReports = []
+        self.Events = []
+        self.Assessments = []
+        self.Results = []
         self.CourseIDs = []
     
     def iterate_nested_dict_and_lists(self, nested_dict, keys_to_print=None, result_dict=None):
@@ -273,15 +278,13 @@ class Database:
         """
         self.cursor.execute(query, (self.StudentID,))
         results = self.cursor.fetchall()
-        StudentInfo = []
 
         for row in results:
             Student = {}
             for r in rows:
                 Student[r] = row[r]
-            StudentInfo.append(Student)
+            self.StudentInfo.append(Student)
         
-        return StudentInfo
 
     def FetchGrade(self):
         rows = []
@@ -298,15 +301,13 @@ class Database:
 
         self.cursor.execute(query, (self.StudentID,))
         results = self.cursor.fetchall()
-        gradeReports = []
         
         for row in results:
             reports = {}
             for r in rows:
                 reports[r] = row[r]
-            gradeReports.append(reports)
+            self.gradeReports.append(reports)
 
-        return gradeReports
 
     def FetchEvent(self):
         rows = []
@@ -323,15 +324,13 @@ class Database:
 
         self.cursor.execute(query, (self.StudentID,))
         results = self.cursor.fetchall()
-        Events = []
         
         for row in results:
             Event = {}
             for r in rows:
                 Event[r] = row[r]
-            Events.append(Event)
+            self.Events.append(Event)
 
-        return Events
     
     def FetchAssessment(self):
         rows = []
@@ -348,15 +347,13 @@ class Database:
 
         self.cursor.execute(query, (self.StudentID,))
         results = self.cursor.fetchall()
-        Assessments = []
         
         for row in results:
             Assessment = {}
             for r in rows:
                 Assessment[r] = row[r]
-            Assessments.append(Assessment)
+            self.Assessments.append(Assessment)
 
-        return Assessments
 
     def FetchResult(self, CourseID):
         rows = []
@@ -374,15 +371,13 @@ class Database:
 
         self.cursor.execute(query, (self.StudentID, CourseID))
         results = self.cursor.fetchall()
-        Results = []
         
         for row in results:
             Result = {}
             for r in rows:
                 Result[r] = row[r]
-            Results.append(Result)
+            self.Results.append(Result)
 
-        return Results
 
 
 
@@ -412,9 +407,6 @@ class Database:
 
         self.conn.commit()
         
-        for CourseID in self.FetchAssessment():
-            self.CourseIDs.append(CourseID['CourseID'])
-        
         self.cursor.close()
         self.conn.close()
         
@@ -425,6 +417,8 @@ class Database:
 
 inst = Database()
 inst.main("ugr_23346_13")
+
+
 
 
 
