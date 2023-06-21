@@ -405,8 +405,30 @@ class Database:
         self.addAssRes()
 
         self.conn.commit()
+
+        self.FetchStudent()
+        self.FetchGrade()
+        self.FetchEvent()
+        self.FetchAssessment()
+        for Course in self.Assessments:
+            self.CourseIDs.append(Course['CourseID'])
+            
+        for CourseID in self.CourseIDs:
+            self.FetchResult(CourseID)
         
         self.cursor.close()
         self.conn.close()
+
+        Tables = {
+            "Student": self.StudentInfo,
+            "GradeReport": self.gradeReports,
+            "Event": self.Events,
+            "Assessment": self.Assessments,
+            "Result": self.Results,
+            "CourseID": self.CourseIDs
+        }
+
+        return Tables
+        
         
 

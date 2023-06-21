@@ -72,6 +72,8 @@ class ASTU_APIApp(MDApp):
         Clock.schedule_once(self.create_list)
         self.inst = API.Stalker()
         self.BLoginStatus = BooleanProperty(False)
+        self.database = {}
+        self.filepath = ""
         return screen
 
     def create_list(self, *args):
@@ -145,7 +147,7 @@ class ASTU_APIApp(MDApp):
         layout = self.root.get_screen("Home").ids.floatH
         image = self.root.get_screen("Home").ids.profile
         label = self.root.get_screen("Home").ids.labelH
-        label.text = "Welcome Sintayehu Sisay"
+        label.text = f"Welcome {self.database['Student'][0]['firstName']} {self.database['Student'][0]['fatherName']}"
         # data = self.header_data(filepath)
         # [size=24] ... [/size]
         # self.root.get_screen("Home").ids.fullname.text = f"[font=appdata/font/Paul-le1V.ttf]Full Name\
@@ -164,7 +166,9 @@ class ASTU_APIApp(MDApp):
         # : {data[7]}[/font]"
         # self.root.get_screen("Home").ids.admissiony.text = f"[font=appdata/font/Paul-le1V.ttf]Admission Year\
         # : {data[6]}[/font]"
-        image.source = f"./data/ugr_22551_13/info/Sintayehu_Sisay_Lema.jpeg"# f"./data/{filepath}/info/{filename}.jpeg"
+        image.source = f"./data/{filepath}/info/{self.database['Student'][0]['firstName']}_\
+{self.database['Student'][0]['fatherName']}_\
+{self.database['Student'][0]['grandFatherName']}.jpeg"
 
     def page(self, text):
         self.root.current = text
@@ -179,14 +183,17 @@ class ASTU_APIApp(MDApp):
         password = self.root.get_screen('Login').ids.pass_field.text
         login = self.inst.login(username, password)
         fetch = self.inst.fetch()
+        self.database = self.inst.Database()
+        print(self.database)
         stat = self.status()
         if stat:
             self.create_list()
         self.BLoginStatus = BooleanProperty(stat)
         if stat:
             self.root.current = 'Home'
+            self.filepath = login['folder_name']
             #self.homepage(login['folder_name'], fetch)
-            self.homepage("", "")
+            self.homepage(self.filepath, "")
 
         else:
             error_msg = "Wrong credentials!"

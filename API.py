@@ -19,6 +19,7 @@ class Stalker:
         self.baseurl = baseurl
         self.graphs = graphs
         self.LoginStatus = False
+        self.inst = database.Database()
 
     def login(self, username, password):
         
@@ -116,9 +117,10 @@ class Stalker:
         return pic_name
     
     def Database(self):
-        inst = database.Database()
-        inst.main(self.pdata['folder_name'])
+        Database = self.inst.main(self.pdata['folder_name'])
         
+        return Database
+
         
     def logout(self):
         res = self.session.get(sign_out, headers=self.headers)
