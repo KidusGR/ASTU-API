@@ -2,6 +2,5 @@ data/
 .idea/
 __pycache__/
 pass.txt
-test.db
-tryFetch.py
+data.db
 .vscode/

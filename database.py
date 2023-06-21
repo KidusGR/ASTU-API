@@ -15,6 +15,7 @@ class Database:
         self.StudentID = ""
         self.studDict = {}
         self.studentFile = ""
+        self.CourseIDs = []
     
     def iterate_nested_dict_and_lists(self, nested_dict, keys_to_print=None, result_dict=None):
         result_dict = self.studDict
@@ -411,11 +412,12 @@ class Database:
 
         self.conn.commit()
         
-
-        CourseIDs = []
         for CourseID in self.FetchAssessment():
-            CourseIDs.append(CourseID['CourseID'])
-        print(CourseIDs)
+            self.CourseIDs.append(CourseID['CourseID'])
+        
+        self.cursor.close()
+        self.conn.close()
+        
 
 
 
