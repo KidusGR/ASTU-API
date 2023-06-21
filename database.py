@@ -4,7 +4,6 @@ import os
 import json
 
 
-
 class Database:
     def __init__(self):
         self.dbName = "data.db"
@@ -411,17 +410,5 @@ class Database:
         self.conn.close()
         
 
-
-
-
-
 inst = Database()
 inst.main("ugr_23346_13")
-
-
-
-
-
-
-
-
