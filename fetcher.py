@@ -9,7 +9,7 @@ conn.row_factory = sqlite3.Row
 cursor = conn.cursor()
 colData = json.loads(open("cols.json", "r").read())
 
-def FetchStudent(StudentID):
+def FetchStudent(StudentID, cursor=cursor):
     rows = []
     for row in colData['cols']['Student']:
         rows.append(row)
@@ -34,7 +34,7 @@ def FetchStudent(StudentID):
 
 
 
-def FetchGrade(StudentID):
+def FetchGrade(StudentID, cursor=cursor):
     rows = []
     for row in colData['cols']['GradeReport']:
         if not "F-KEY" in row:
@@ -59,6 +59,10 @@ def FetchGrade(StudentID):
         gradeReports.append(reports)
 
     return gradeReports
+
+
+# def FetchEvent(StudentID, cursor=cursor):
+
 
 for rep in FetchGrade(23182):
     print(rep)
