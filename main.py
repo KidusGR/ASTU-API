@@ -10,7 +10,7 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.window import Window
 from kivy.properties import BooleanProperty
 from kivymd.uix.label import MDLabel
-from kivymd.uix.list import OneLineIconListItem, IconLeftWidget
+from kivymd.uix.list import OneLineIconListItem, IconLeftWidget, OneLineListItem
 from kivymd.uix.navigationdrawer import MDNavigationDrawer
 
 import API
@@ -158,11 +158,13 @@ class ASTU_APIApp(MDApp):
             "Semester": f"{Stud['academicYearSemester']}"
         }
         for line in list(homeList.keys()):
-            l = OneLineIconListItem(
+            l = OneLineListItem(
                         id=line,
-                        text=f"[size=12][font=appdata/font/neuropol.otf]{line} : {homeList[line]}[/font][/size]",
+                        text=f"[size=10][font=appdata/font/neuropol.otf]{line} : {homeList[line]}[/font][/size]",
                         theme_text_color="Custom",
-                        text_color="white",
+                        text_color=self.theme_cls.primary_color,
+                        size_hint=(1, None),
+                        height=dp(10)
                     )
             layout.add_widget(l)
             
