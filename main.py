@@ -180,13 +180,22 @@ class ASTU_APIApp(MDApp):
         }
 
         for lin in list(profileListTwo.keys()):
-            l = l = OneLineListItem(
-                id=lin,
-                text=f"[size=10][font=appdata/font/neuropol.otf]{lin} : {profileListTwo[lin]}[/font][/size]",
-                theme_text_color="Custom",
-                text_color=self.theme_cls.primary_color,
-                _height=dp(30)
-            )
+            if lin == "Amharic name":
+                l = OneLineListItem(
+                    id=lin,
+                    text=f"[size=13][font=appdata/font/hiwua.ttf]ሙሉ ስም : {profileListTwo[lin]}[/font][/size]",
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    _height=dp(30)
+                )
+            else:
+                l = OneLineListItem(
+                    id=lin,
+                    text=f"[size=10][font=appdata/font/neuropol.otf]{lin} : {profileListTwo[lin]}[/font][/size]",
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    _height=dp(30)
+                )
         
             cardTwo.add_widget(l)
 
@@ -205,7 +214,6 @@ class ASTU_APIApp(MDApp):
         login = self.inst.login(username, password)
         fetch = self.inst.fetch()
         self.database = self.inst.Database()
-        print(self.database)
         stat = self.status()
         if stat:
             self.create_list()
