@@ -213,7 +213,6 @@ class ASTU_APIApp(MDApp):
         if stat:
             self.root.current = 'Home'
             self.filepath = login['folder_name']
-            #self.homepage(login['folder_name'], fetch)
             self.homepage()
             self.profilepage()
 
