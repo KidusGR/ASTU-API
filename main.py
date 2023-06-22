@@ -116,34 +116,7 @@ class ASTU_APIApp(MDApp):
                     else:
                         button.add_widget(list1)
 
-    def header_data(self, filepath):
-
-        field = ['dormitoryView', 'section', 'idNumber', 'classYear', 'name', 'fullName', 'admissionYear']
-        with open(f"./data/{filepath}/info/headerProfile.json") as head:
-            data = json.load(head)
-            head.close()
-
-        def get_recursively(search_dict, fields):
-            fields_found = []
-            for key, value in search_dict.items():
-                if key in field:
-                    fields_found.append(value)
-                elif isinstance(value, dict):
-                    results = get_recursively(value, field)
-                    for result in results:
-                        fields_found.append(result)
-                elif isinstance(value, list):
-                    for item in value:
-                        if isinstance(item, dict):
-                            more_results = get_recursively(item, field)
-                            for another_result in more_results:
-                                fields_found.append(another_result)
-
-            return fields_found
-
-        return get_recursively(data, field)
-
-    def homepage(self, filepath, filename):
+    def homepage(self):
         layout = self.root.get_screen("Home").ids.boxH
         image = self.root.get_screen("Home").ids.profile
         label = self.root.get_screen("Home").ids.labelH
@@ -163,31 +136,60 @@ class ASTU_APIApp(MDApp):
                         text=f"[size=10][font=appdata/font/neuropol.otf]{line} : {homeList[line]}[/font][/size]",
                         theme_text_color="Custom",
                         text_color=self.theme_cls.primary_color,
-                        size_hint=(1, None),
-                        height=dp(10)
+                        _height=dp(35)
                     )
-            layout.add_widget(l)
             
+            layout.add_widget(l)
+
+        image.source = f"./data/{self.filepath}/info/{Stud['firstName']}_{Stud['fatherName']}_{Stud['grandFatherName']}.jpeg"
+
+    def profilepage(self):
+        image = self.root.get_screen("Profile").ids.profile
+        card = self.root.get_screen("Profile").ids.card
+        cardTwo = self.root.get_screen("Profile").ids.cardTwo
+        Stud = self.database['Student'][0]
+        image.source = f"./data/{self.filepath}/info/{Stud['firstName']}_{Stud['fatherName']}_{Stud['grandFatherName']}.jpeg"
+        profileList = {
+            "Name": f"{Stud['firstName']} {Stud['fatherName']} {Stud['grandFatherName']}",
+            "ID": f"{Stud['userName']}",
+            "Gender": f"{Stud['gender']}"
+        }
+        for line in list(profileList.keys()):
+            l = OneLineListItem(
+                id=line,
+                text=f"[size=10][font=appdata/font/neuropol.otf]{line} : {profileList[line]}[/font][/size]",
+                theme_text_color="Custom",
+                text_color=self.theme_cls.primary_color,
+                _height=dp(30)
+            )
         
-        # data = self.header_data(filepath)
-        # [size=24] ... [/size]
-        # self.root.get_screen("Home").ids.fullname.text = f"[font=appdata/font/Paul-le1V.ttf]Full Name\
-        # : {data[5]}[/font]"
-        # self.root.get_screen("Home").ids.idnum.text = f"[font=appdata/font/Paul-le1V.ttf]ID\
-        # : {data[0]}[/font]"
-        # self.root.get_screen("Home").ids.program.text = f"[font=appdata/font/Paul-le1V.ttf]Program\
-        # : {data[4]}[/font]"
-        # self.root.get_screen("Home").ids.classyear.text = f"[font=appdata/font/Paul-le1V.ttf]Class Year\
-        # : {data[1]}[/font]"
-        # self.root.get_screen("Home").ids.section.text = f"[font=appdata/font/Paul-le1V.ttf]Section\
-        # : {data[3]}[/font]"
-        # self.root.get_screen("Home").ids.dorm.text = f"[font=appdata/font/Paul-le1V.ttf]Dormitory\
-        # : {data[2]}[/font]"
-        # self.root.get_screen("Home").ids.admission.text = f"[font=appdata/font/Paul-le1V.ttf]Admission\
-        # : {data[7]}[/font]"
-        # self.root.get_screen("Home").ids.admissiony.text = f"[font=appdata/font/Paul-le1V.ttf]Admission Year\
-        # : {data[6]}[/font]"
-        image.source = f"./data/{filepath}/info/{Stud['firstName']}_{Stud['fatherName']}_{Stud['grandFatherName']}.jpeg"
+            card.add_widget(l)
+        profileListTwo = {
+            "First name": f"{Stud['firstName']}",
+            "Father name": f"{Stud['fatherName']}",
+            "Grand F name": f"{Stud['grandFatherName']}",
+            "Amharic name": f"{Stud['amharicFirstName']} {Stud['amharicFatherName']} {Stud['amharicGrandFatherName']}",
+            "Marital Status": f"{Stud['maritalStatus']}",
+            "Nationality": f"{Stud['nationality']}",
+            "Region": f"{Stud['region']}",
+            "Disability": f"{Stud['disability']}",
+            "Birth date": f"{Stud['dateOfBirth']}",
+            "Birth place": f"{Stud['placeOfBirth']}",
+            "Phone": f"{Stud['mobile']}",
+            "Zone": f"{Stud['zone']}"
+        }
+
+        for lin in list(profileListTwo.keys()):
+            l = l = OneLineListItem(
+                id=lin,
+                text=f"[size=10][font=appdata/font/neuropol.otf]{lin} : {profileListTwo[lin]}[/font][/size]",
+                theme_text_color="Custom",
+                text_color=self.theme_cls.primary_color,
+                _height=dp(30)
+            )
+        
+            cardTwo.add_widget(l)
+
 
     def page(self, text):
         self.root.current = text
@@ -212,7 +214,8 @@ class ASTU_APIApp(MDApp):
             self.root.current = 'Home'
             self.filepath = login['folder_name']
             #self.homepage(login['folder_name'], fetch)
-            self.homepage(self.filepath, "")
+            self.homepage()
+            self.profilepage()
 
         else:
             error_msg = "Wrong credentials!"
