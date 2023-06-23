@@ -12,6 +12,7 @@ from kivy.properties import BooleanProperty
 from kivymd.uix.label import MDLabel
 from kivymd.uix.list import OneLineIconListItem, IconLeftWidget, OneLineListItem
 from kivymd.uix.navigationdrawer import MDNavigationDrawer
+from kivymd.uix.boxlayout import MDBoxLayout
 
 import API
 
@@ -199,6 +200,69 @@ class ASTU_APIApp(MDApp):
         
             cardTwo.add_widget(l)
 
+    def eventpage(self):
+        card = self.root.get_screen("Events").ids.card
+        Event = self.database['Event']
+        
+
+        for eve in Event:
+            
+            lists = {
+                "Title": f"{eve['title']}",
+                "Start date": f"{eve['startDate']}",
+                "End date": f"{eve['endDate']}"
+            }
+            b = MDBoxLayout(
+                id="boxP",
+                md_bg_color=(30/255, 30/255, 30/255, 1),
+                size_hint=(1, 1),
+                orientation="vertical"
+            )
+            l = OneLineIconListItem(
+                bg_color=(1,1,1,0.2),
+                pos_hint={"center_x": 0.5, "center_y": 1},
+                size_hint=(1, None),
+                _height=dp(25)
+                
+            )
+
+            l.add_widget(IconLeftWidget(
+                icon="clock-check",
+                theme_icon_color="Custom",
+                icon_color=self.theme_cls.primary_color,
+                icon_size=15
+                )
+            )
+
+            l.add_widget(MDLabel(
+                text="Event",
+                theme_text_color="Custom",
+                text_color=self.theme_cls.primary_color,
+                pos_hint={"x": 0.2, "center_y": 0.5},
+                font_name='./appdata/font/neuropol.otf',
+                padding_x="25dp"
+            ))
+
+            
+            b.add_widget(l)
+            for li in list(lists.keys()):
+                k = OneLineListItem(
+                    id=li,
+                    text=f"[size=11][font=appdata/font/neuropol.otf]{li}: {lists[li]}[/font][/size]",
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    _height=dp(50)
+                )
+
+                b.add_widget(k)
+                
+
+            
+            
+            card.add_widget(b)
+            
+
+
 
     def page(self, text):
         self.root.current = text
@@ -223,6 +287,7 @@ class ASTU_APIApp(MDApp):
             self.filepath = login['folder_name']
             self.homepage()
             self.profilepage()
+            self.eventpage()
 
         else:
             error_msg = "Wrong credentials!"
