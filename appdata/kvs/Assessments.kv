@@ -26,18 +26,21 @@
                     MDFloatLayout:
                         id: floatA
 
-                        MDLabel:
-                            text: "Developed By  |  Kidus_GR"
-                            font_size: "10dp"
-                            halign: "center"
-                            # size_hint_y: None
-                            # height: self.texture_size[1]
-                            # padding_y: "15dp"
-                            pos_hint: {"center_x": 0.5, "center_y": 0.1}
-                            theme_text_color: "Custom"
-                            text_color: app.theme_cls.primary_color
-                            font_name: 'appdata/font/neuropol.otf'
-                            size_hint_y: 1
+                        MDCard:
+                            id: card
+                            orientation: "vertical"
+                            size_hint: 0.9, None
+                            height: "480dp"
+                            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                            radius: 0
+                            md_bg_color: (30/255, 30/255, 30/255, 1)
+                            ScrollView:
+                                MDBoxLayout:
+                                    id: boxA
+                                    md_bg_color: (30/255, 30/255, 30/255, 1)
+                                    size_hint: 1, 1
+                                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                                    orientation: "vertical"
 
         MDNavigationDrawer:
             id: nav_drawer

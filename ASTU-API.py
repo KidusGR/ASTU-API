@@ -10,6 +10,8 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.window import Window
 from kivy.properties import BooleanProperty
 from kivymd.uix.label import MDLabel
+from kivy.uix.button import Button
+from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.list import OneLineIconListItem, IconLeftWidget, OneLineListItem
 from kivymd.uix.navigationdrawer import MDNavigationDrawer
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -75,6 +77,8 @@ class ASTU_APIApp(MDApp):
         self.BLoginStatus = BooleanProperty(False)
         self.database = {}
         self.filepath = ""
+        self.menu = None
+        self.menu_items = []
         return screen
 
     def create_list(self, *args):
@@ -263,6 +267,59 @@ class ASTU_APIApp(MDApp):
             
 
 
+    def assesspage(self):
+        card = self.root.get_screen("Assessments").ids.card
+        Box = self.root.get_screen("Assessments").ids.boxA
+        Assessment = self.database['Assessment']
+        count = 0
+        for assess in Assessment:
+            if count >= 3:
+                break
+            count += 1
+            lists = {
+                "instructorName": f"{assess['instructorName']}",
+                "sumOfMaximumMark": f"{assess['sumOfMaximumMark']}",
+                "sumOfResults": f"{assess['sumOfResults']}",
+                "courseTitle": f"{assess['courseTitle']}",
+                "studentGrade": f"{assess['studentGrade']}",
+                "creditHour": f"{assess['creditHour']}",
+                "ects": f"{assess['ects']}",
+                "semesterName": f"{assess['semesterName']}",
+                "classYear": f"{assess['classYear']}",
+                "courseCode": f"{assess['courseCode']}"
+            }
+            
+            menu_items = [
+            {
+                "text": f"Item {i}",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x=f"Item {i}": self.test(x),
+            } for i in range(5)
+            ]
+
+            self.menu = MDDropdownMenu(
+                caller=Button(
+                    text="sdfsdf",
+                    pos_hint={"center_x": 0.5, "center_y": 0.5},
+                    size_hint=(1, None),
+                    height=dp(15)
+                ),
+                items=menu_items,
+                width_mult=4,
+                )
+            Box.add_widget(self.menu.caller)
+
+
+    
+    def test(self, x):
+        pass
+            
+            
+
+    
+    
+
+
 
     def page(self, text):
         self.root.current = text
@@ -288,6 +345,7 @@ class ASTU_APIApp(MDApp):
             self.homepage()
             self.profilepage()
             self.eventpage()
+            self.assesspage()
 
         else:
             error_msg = "Wrong credentials!"
