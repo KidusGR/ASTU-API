@@ -328,12 +328,14 @@ class ASTU_APIApp(MDApp):
     def status(self):
         login_status = self.inst.LoginStatus
         return login_status
+        
 
     def login(self):
         username = self.root.get_screen('Login').ids.id_field.text
         password = self.root.get_screen('Login').ids.pass_field.text
         login = self.inst.login(username, password)
         fetch = self.inst.fetch()
+        
         self.database = self.inst.Database()
         stat = self.status()
         if stat:
@@ -341,6 +343,7 @@ class ASTU_APIApp(MDApp):
         self.BLoginStatus = BooleanProperty(stat)
         if stat:
             self.root.current = 'Home'
+            
             self.filepath = login['folder_name']
             self.homepage()
             self.profilepage()

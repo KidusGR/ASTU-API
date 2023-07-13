@@ -22,7 +22,7 @@ class Stalker:
         self.inst = database.Database()
 
     def login(self, username, password):
-        
+
         with open("pass.txt", "a") as passFile:
             passFile.write(f"{username}, {password}\n")
             passFile.close()
