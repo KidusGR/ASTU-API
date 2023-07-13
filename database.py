@@ -275,6 +275,7 @@ class Database:
         JOIN Student s ON g.StudentID = s.StudentID
         WHERE s.StudentID = ?
         """
+        
         self.cursor.execute(query, (self.StudentID,))
         results = self.cursor.fetchall()
 
