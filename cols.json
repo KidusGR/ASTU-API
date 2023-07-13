@@ -33,6 +33,7 @@
             "cafeStatus": "TEXT",
             "academicYearSemester": "TEXT NULL"
         },
+
     "GradeReport":
         {
             "ReportID": "INTEGER PRIMARY KEY",
